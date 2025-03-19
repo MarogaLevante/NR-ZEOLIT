@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR-Zeo - Zeolita Natural</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="NR-Zeo Logo">
+        </div>
+        <div class="language-selector">
+            <button class="lang-btn" onclick="setLanguage('es')">Español</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showTab('home')"><i class="fas fa-home"></i> <span class="nav-text" data-translate="home">Inicio</span></a></li>
+                <li><a href="#" onclick="showTab('about')"><i class="fas fa-info-circle"></i> <span class="nav-text" data-translate="about">Quiénes Somos</span></a></li>
+                <li><a href="#" onclick="showTab('products')"><i class="fas fa-box-open"></i> <span class="nav-text" data-translate="products">Nuestros Productos</span></a></li>
+                <li><a href="#" onclick="showTab('benefits')"><i class="fas fa-seedling"></i> <span class="nav-text" data-translate="benefits">Beneficios</span></a></li>
+                <li><a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> <span class="nav-text" data-translate="contact">Contáctanos</span></a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="tab-content">
+            <section id="home" class="tab active">
+                <h1 id="home-title" data-translate="homeTitle">Bienvenidos a NR-Zeo</h1>
+                <p id="home-desc" data-translate="homeDesc">Expertos en zeolita natural para la agricultura, medio ambiente y la industria.</p>
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+                    <div class="carousel-images">
+                        <img class="carousel-image" src="zeolite1.jpg" alt="Zeolita Natural">
+                        <img class="carousel-image" src="zeolite2.jpg" alt="Zeolita en Agricultura">
+                        <img class="carousel-image" src="zeolite3.jpg" alt="Aplicaciones Industriales">
+                    </div>
+                    <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+                </div>
+            </section>
+            <section id="about" class="tab">
+                <h1 id="about-title" data-translate="aboutTitle">Quiénes Somos</h1>
+                <p id="about-desc" data-translate="aboutDesc">Somos líderes en la producción y exportación de zeolita natural, con aplicaciones en agricultura, filtración de agua y la industria.</p>
+                <img id="about-image" src="about.jpg" alt="Nuestra Empresa">
+                <p id="about-info" data-translate="aboutInfo">NR-Zeo es una empresa comprometida con la sostenibilidad y la innovación en el uso de la zeolita natural. Nuestro equipo de expertos trabaja para ofrecer soluciones eficientes y ecológicas para diversos sectores. Natural Resources Company, hemos establecido nuestra empresa en Irak en 2023. Antes de nuestra constitución oficial, hemos estado experimentando con ZEOLITAS en diferentes sectores; principalmente Agricultura, Tratamiento de Aguas, Acuicultura y Usos Avícolas</p>
+            </section>
+            <section id="products" class="tab">
+                <h1 id="products-title" data-translate="productsTitle">Nuestros Productos</h1>
+                <p id="products-desc" data-translate="productsDesc">Ofrecemos zeolita en diferentes formatos: granular, polvo y en pellets.</p>
+                <img id="products-image" src="products.jpg" alt="Nuestros Productos">
+                <p id="products-info" data-translate="productsInfo">Nuestros productos son 100% naturales y están diseñados para satisfacer las necesidades de agricultores, industrias y proyectos ambientales.</p>
+            </section>
+            <section id="benefits" class="tab">
+                <h1 id="benefits-title" data-translate="benefitsTitle">Beneficios de la Zeolita</h1>
+                <ul id="benefits-list">
+                    <li data-translate="benefit1">Mejora la fertilidad del suelo.</li>
+                    <li data-translate="benefit2">Aumenta la retención de agua.</li>
+                    <li data-translate="benefit3">Reduce la contaminación ambiental.</li>
+                    <li data-translate="benefit4">Optimiza el uso de fertilizantes y nutrientes.</li>
+                </ul>
+                <p id="benefits-info" data-translate="benefitsInfo">La zeolita es un mineral versátil que ofrece múltiples beneficios tanto para la agricultura como para la industria y el medio ambiente.</p>
+            </section>
+            <section id="contact" class="tab">
+                <h1 id="contact-title" data-translate="contactTitle">Contáctanos</h1>
+                <div id="contact-info" data-translate="contactInfo"></div> <!-- Aquí se mostrará la información de contacto -->
+                <form action="#" method="POST">
+                    <input type="text" name="name" placeholder="Tu nombre" required>
+                    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                    <textarea name="message" placeholder="Tu mensaje" required></textarea>
+                    <button type="submit" data-translate="submit">Enviar</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 NR-Zeo. <span data-translate="rights">Todos los derechos reservados.</span></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
