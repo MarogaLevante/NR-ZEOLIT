@@ -202,15 +202,43 @@ const translations = {
 };
 
 function setLanguage(language) {
+    // Traducción estándar de elementos
     const elements = document.querySelectorAll('[data-translate]');
     elements.forEach(element => {
         const key = element.getAttribute('data-translate');
+        
+        // Manejar diferentes tipos de elementos
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
             element.placeholder = translations[language][key];
+        } else if (element.tagName === 'OPTION') {
+            element.textContent = translations[language][key];
         } else {
-            element.innerHTML = translations[language][key]; // Usamos innerHTML para permitir saltos de línea <br>
+            element.innerHTML = translations[language][key];
         }
     });
+
+    // Actualizar específicamente el menú móvil
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('option').forEach(option => {
+            const menuKey = option.getAttribute('data-translate');
+            option.textContent = translations[language][menuKey];
+        });
+    }
+
+    // Actualizar texto alternativo de imágenes en experimentos
+    document.querySelectorAll('.experiment-images img').forEach(img => {
+        const altKey = img.getAttribute('data-translate');
+        img.alt = translations[language][altKey];
+    });
+
+    // Mantener consistencia con el tab activo
+    const currentTab = document.querySelector('.tab.active').id;
+    document.querySelector('.mobile-menu').value = `#${currentTab}`;
+    
+    // Resto del código existente (swipe, etc.)
+    // ... [mantén aquí el código de soporte para swipe que ya tenías]
+}
 
 
 
@@ -231,7 +259,7 @@ carousel.addEventListener('touchend', e => {
         diffX > 0 ? nextSlide() : prevSlide();
     }
 });
-}
+
 
 
     // Actualizar el menú móvil
