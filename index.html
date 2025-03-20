@@ -2,16 +2,16 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>NR-Zeo - Zeolita Natural</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&display=swap">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="logo.png" alt="NR-Zeo Logo">
+            <img src="logo.png" alt="NR-Zeo Logo" loading="lazy">
         </div>
         <div class="language-selector">
             <button class="lang-btn" onclick="setLanguage('es')">Español</button>
@@ -22,15 +22,14 @@
             <ul>
                 <li><a href="#" onclick="showTab('home')"><i class="fas fa-home"></i> <span class="nav-text" data-translate="home">Inicio</span></a></li>
                 <li><a href="#" onclick="showTab('about')"><i class="fas fa-info-circle"></i> <span class="nav-text" data-translate="about">Quiénes Somos</span></a></li>
-                <li><a href="#" onclick="showTab('products')"><i class="fas fa-box-open"></i> <span class="nav-text" data-translate="products">Nuestros Productos</span></a></li>
+                <li><a href="#" onclick="showTab('products')"><i class="fas fa-box-open"></i> <span class="nav-text" data-translate="products">Productos</span></a></li>
                 <li><a href="#" onclick="showTab('benefits')"><i class="fas fa-seedling"></i> <span class="nav-text" data-translate="benefits">Beneficios</span></a></li>
-                <li><a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> <span class="nav-text" data-translate="contact">Contáctanos</span></a></li>
-                <!-- Nueva sección para experimentos -->
                 <li><a href="#" onclick="showTab('experiments')"><i class="fas fa-flask"></i> <span class="nav-text" data-translate="experiments">Experimentos</span></a></li>
+                <li><a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> <span class="nav-text" data-translate="contact">Contacto</span></a></li>
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <div class="tab-content">
             <!-- Sección de Inicio -->

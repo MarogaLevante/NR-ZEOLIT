@@ -319,3 +319,75 @@ footer {
         font-size: 1rem;
     }
 }
+/* ========== Diseño Responsivo ========== */
+/* Pantallas menores a 768px (Móviles) */
+@media (max-width: 768px) {
+    /* Header - Ajuste vertical */
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    /* Menú de navegación - Colapso vertical */
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    nav ul li a {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    /* Carrusel - Botones más pequeños */
+    .carousel-btn {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Sección Experimentos - Imágenes apiladas */
+    .experiment-images {
+        flex-direction: column;
+    }
+
+    .experiment-images img {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Títulos más pequeños */
+    h1 {
+        font-size: 1.8rem !important;
+    }
+}
+
+/* Pantallas menores a 480px (Móviles pequeños) */
+@media (max-width: 480px) {
+    /* Botones de idioma compactos */
+    .language-selector {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Texto general más legible */
+    body {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    /* Ajuste de márgenes */
+    main {
+        padding: 15px;
+    }
+
+    .tab-content {
+        padding: 15px;
+    }
+}

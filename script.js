@@ -213,5 +213,22 @@ function setLanguage(language) {
     });
 }
 
+// Agregar soporte para swipe en móviles
+let touchStartX = 0;
+const carousel = document.querySelector('.carousel');
+
+carousel.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const diffX = touchStartX - touchEndX;
+    
+    if (Math.abs(diffX) > 50) {
+        diffX > 0 ? nextSlide() : prevSlide();
+    }
+});
+
 // Establecer el idioma por defecto al cargar la página
 setLanguage('es');
