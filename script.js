@@ -58,14 +58,14 @@ function showTab(tabId) {
     });
     document.getElementById(tabId).classList.add('active');
 
-        // Actualizar menú móvil
-        document.querySelector('.mobile-menu').value = `#${tabId}`;
+    // Actualizar menú móvil
+    document.querySelector('.mobile-menu').value = `#${tabId}`;
 }
 
 // Traducciones
 const translations = {
     es: {
-        menu:"Menu",
+        menu: "Menu",
         home: "Inicio",
         about: "Quiénes Somos",
         products: "Nuestros Productos",
@@ -112,7 +112,7 @@ const translations = {
         experiment2Image2: "Patatas sin Zeolita"
     },
     en: {
-        menu:"Menu",
+        menu: "Menu",
         home: "Home",
         about: "About Us",
         products: "Our Products",
@@ -159,7 +159,7 @@ const translations = {
         experiment2Image2: "Potatoes without Zeolite"
     },
     ar: {
-        menu:"القائمة",
+        menu: "القائمة",
         home: "الرئيسية",
         about: "من نحن",
         products: "منتجاتنا",

@@ -222,7 +222,16 @@ ul li:hover {
     background-color: #eee;
     transform: translateX(10px);
 }
-
+/* Estilos para la imagen de la sección "Quiénes Somos" */
+.about-image {
+    width: 50%; /* Ajusta el tamaño de la imagen */
+    max-width: 300px; /* Tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Hace que la imagen sea un bloque */
+    margin: 20px auto; /* Centra la imagen horizontalmente */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
 /* Formulario de contacto */
 #contact-info {
     font-size: 1rem;
