@@ -233,8 +233,8 @@ function setLanguage(lang) {
         tabs.forEach(tab => {
             const option = document.createElement('option');
             option.value = `#${tab.id}`;
-            option.dataset.translate = tab.id + 'Title';
-            option.textContent = translations[lang][tab.id + 'Title'] || tab.id;
+            option.dataset.translate = tab.id;
+            option.textContent = translations[lang][tab.id] || tab.id;
             mobileMenu.appendChild(option);
         });
 
@@ -283,8 +283,8 @@ window.addEventListener('DOMContentLoaded', () => {
         tabs.forEach(tab => {
             const option = document.createElement('option');
             option.value = `#${tab.id}`;
-            option.dataset.translate = tab.id + 'Title';
-            option.textContent = translations[userLang][tab.id + 'Title'] || tab.id;
+            option.dataset.translate = tab.id;
+            option.textContent = translations[userLang][tab.id] || tab.id;
             mobileMenu.appendChild(option);
         });
     }
