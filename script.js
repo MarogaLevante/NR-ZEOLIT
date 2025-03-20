@@ -63,6 +63,7 @@ function showTab(tabId) {
 const translations = {
     es: {
         menu: "Menú",
+        logoAlt: "Logo NR-Zeo",
         home: "Inicio",
         about: "Quiénes Somos",
         products: "Nuestros Productos",
@@ -110,6 +111,7 @@ const translations = {
     },
     en: {
         menu: "Menu",
+        logoAlt: "NR-Zeo Logo",
         home: "Home",
         about: "About Us",
         products: "Our Products",
@@ -157,6 +159,7 @@ const translations = {
     },
     ar: {
         menu: "القائمة",
+        logoAlt: "شعار NR-Zeo",
         home: "الرئيسية",
         about: "من نحن",
         products: "منتجاتنا",
@@ -204,33 +207,34 @@ const translations = {
     }
 };
 
+// Reemplazar completamente la función setLanguage
 function setLanguage(language) {
-    // Actualizar todos los elementos traducibles
+    // Actualizar elementos estándar
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
-        // Manejar diferentes tipos de elementos
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
             element.placeholder = translations[language][key];
         } else if (element.tagName === 'OPTION') {
-            element.textContent = translations[language][key]; // Traducir opciones del select
+            element.textContent = translations[language][key];
+        } else if (element.tagName === 'IMG') {
+            element.alt = translations[language][key];
         } else {
             element.innerHTML = translations[language][key];
         }
     });
 
-    // Actualizar específicamente el menú móvil
+    // Actualización específica del menú móvil
     const mobileMenu = document.querySelector('.mobile-menu');
     if (mobileMenu) {
-        mobileMenu.querySelectorAll('option').forEach(option => {
-            const menuKey = option.getAttribute('data-translate');
-            option.textContent = translations[language][menuKey];
-        });
+        // Forzar actualización visual del select
+        const tempValue = mobileMenu.value;
+        mobileMenu.innerHTML = mobileMenu.innerHTML; // Truco para refrescar
+        mobileMenu.value = tempValue;
         
-        // Forzar re-renderizado del menú móvil
-        mobileMenu.style.display = 'none';
-        mobileMenu.offsetHeight; // Trigger reflow
-        mobileMenu.style.display = 'block';
+        // Aplicar estilos de visibilidad
+        mobileMenu.style.opacity = '1';
+        mobileMenu.style.visibility = 'visible';
     }
 
     // Actualizar texto alternativo de imágenes
@@ -239,10 +243,30 @@ function setLanguage(language) {
         img.alt = translations[language][altKey];
     });
 
-    // Mantener consistencia con el tab activo
+    // Mantener sincronización con pestaña activa
     const currentTab = document.querySelector('.tab.active').id;
-    document.querySelector('.mobile-menu').value = `#${currentTab}`;
+    if(mobileMenu) mobileMenu.value = `#${currentTab}`;
 }
+
+// Agregar este código al final del archivo
+document.querySelector('.mobile-menu').addEventListener('change', function(e) {
+    const targetTab = e.target.value.replace('#', '');
+    showTab(targetTab);
+    window.scrollTo({
+        top: document.querySelector(targetTab).offsetTop - 100,
+        behavior: 'smooth'
+    });
+});
+
+// Actualizar el evento de clic para todos los enlaces
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        showTab(targetId.replace('#', ''));
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+    });
+});
     
     // Resto del código existente (swipe, etc.)
     // ... [mantén aquí el código de soporte para swipe que ya tenías]
