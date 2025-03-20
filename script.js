@@ -225,9 +225,19 @@ function setLanguage(lang) {
     // Actualización específica del menú móvil
     const mobileMenu = document.querySelector('.mobile-menu');
     if (mobileMenu) {
-        mobileMenu.querySelectorAll('option').forEach(option => {
-            option.textContent = translations[lang][option.dataset.translate];
+        // Limpiar opciones existentes
+        mobileMenu.innerHTML = '';
+
+        // Agregar opciones al menú móvil
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            const option = document.createElement('option');
+            option.value = `#${tab.id}`;
+            option.dataset.translate = tab.id + 'Title';
+            option.textContent = translations[lang][tab.id + 'Title'] || tab.id;
+            mobileMenu.appendChild(option);
         });
+
         mobileMenu.value = `#${document.querySelector('.tab.active').id}`;
     }
 }
