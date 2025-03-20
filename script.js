@@ -209,10 +209,11 @@ const translations = {
 
 // Reemplazar completamente la función setLanguage
 function setLanguage(language) {
-    // Actualizar elementos estándar
+    // 1. Actualizar elementos principales
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
+        // Manejar diferentes tipos de elementos
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
             element.placeholder = translations[language][key];
         } else if (element.tagName === 'OPTION') {
@@ -224,28 +225,24 @@ function setLanguage(language) {
         }
     });
 
-    // Actualización específica del menú móvil
+    // 2. Fix para menú móvil
     const mobileMenu = document.querySelector('.mobile-menu');
     if (mobileMenu) {
-        // Forzar actualización visual del select
-        const tempValue = mobileMenu.value;
-        mobileMenu.innerHTML = mobileMenu.innerHTML; // Truco para refrescar
-        mobileMenu.value = tempValue;
+        // Truco para forzar actualización
+        const tempDisplay = mobileMenu.style.display;
+        mobileMenu.style.display = 'none';
+        setTimeout(() => {
+            mobileMenu.style.display = tempDisplay;
+        }, 50);
         
-        // Aplicar estilos de visibilidad
-        mobileMenu.style.opacity = '1';
-        mobileMenu.style.visibility = 'visible';
+        // Actualizar valor seleccionado
+        const currentTab = document.querySelector('.tab.active').id;
+        mobileMenu.value = `#${currentTab}`;
     }
 
-    // Actualizar texto alternativo de imágenes
-    document.querySelectorAll('.experiment-images img').forEach(img => {
-        const altKey = img.getAttribute('data-translate');
-        img.alt = translations[language][altKey];
-    });
-
-    // Mantener sincronización con pestaña activa
-    const currentTab = document.querySelector('.tab.active').id;
-    if(mobileMenu) mobileMenu.value = `#${currentTab}`;
+    // 3. Depuración en consola
+    console.log('Idioma cambiado a:', language);
+    console.log('Estado del menú móvil:', mobileMenu.offsetParent !== null);
 }
 
 // Agregar este código al final del archivo
@@ -326,6 +323,22 @@ window.addEventListener('hashchange', function() {
     showTab(currentTab);
 });
 
+// Monitorizar cambios de visibilidad
+const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+        if (mutation.attributeName === 'style') {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenu && window.getComputedStyle(mobileMenu).display === 'none') {
+                mobileMenu.style.display = 'block';
+            }
+        }
+    });
+});
+
+observer.observe(document.querySelector('.mobile-menu'), {
+    attributes: true,
+    attributeFilter: ['style']
+});
 
 
 // Establecer el idioma por defecto al cargar la página

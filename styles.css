@@ -512,3 +512,28 @@ footer {
         display: none !important;
     }
 }
+/* Mobile Menu Fix */
+.mobile-menu {
+    display: block !important; /* Forzar visibilidad */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+}
+
+@media (max-width: 768px) {
+    .brand {
+        z-index: 1001; /* Debajo del menú */
+    }
+    
+    .mobile-menu {
+        z-index: 1002; /* Encima de todo */
+        position: relative;
+        margin-top: 15px;
+    }
+    
+    /* Resetear cualquier transformación */
+    .mobile-menu:not([style]) {
+        transform: none !important;
+    }
+}
