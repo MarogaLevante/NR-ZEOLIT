@@ -1,35 +1,51 @@
-/* Estilos generales */
-body {
-    font-family: 'Source Sans Pro', sans-serif;
+/* Reset básico para consistencia entre navegadores */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Elimina highlight en taps */
 }
 
+/* Estructura principal */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; /* Previene scroll horizontal */
+    background-color: #f4f4f4;
+}
+
+/* Cabecera y navegación */
 header {
-    background-color: #353c4c;
-    color: white;
-    padding: 10px 20px;
+    background: #353c4c;
+    padding: 15px;
+    position: relative;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Selector de idioma */
 .language-selector {
     display: flex;
     gap: 10px;
 }
 
 .lang-btn {
-    background-color: #555;
-    color: white;
-    border: none;
     padding: 8px 15px;
-    cursor: pointer;
+    border: none;
     border-radius: 5px;
+    cursor: pointer;
+    background: #444;
+    color: white;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -38,6 +54,31 @@ header {
     transform: scale(1.05);
 }
 
+/* Menú móvil - Crítico para dispositivos pequeños */
+.mobile-menu {
+    display: none;
+    width: 90%;
+    margin: 15px auto;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #1a4d2b;
+    border-radius: 8px;
+    background: #fff;
+    -webkit-appearance: none; /* Elimina estilos nativos en iOS */
+    appearance: none;
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+}
+
+/* Menú desktop - Oculto en móviles */
 nav ul {
     list-style: none;
     margin: 0;
@@ -266,386 +307,4 @@ footer {
     width: 48%;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Diseño responsive */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .carousel {
-        max-width: 100%;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form {
-        width: 90%;
-    }
-
-    .experiment-images {
-        flex-direction: column;
-    }
-
-    .experiment-images img {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .lang-btn {
-        padding: 5px 10px;
-        font-size: 0.9rem;
-    }
-
-    nav ul li a {
-        padding: 8px 10px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-}
-/* ========== Diseño Responsivo ========== */
-/* Pantallas menores a 768px (Móviles) */
-@media (max-width: 768px) {
-    /* Header - Ajuste vertical */
-    header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    /* Menú de navegación - Colapso vertical */
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        gap: 8px;
-    }
-
-    nav ul li a {
-        justify-content: center;
-        padding: 12px;
-    }
-
-    /* Carrusel - Botones más pequeños */
-    .carousel-btn {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-
-    /* Sección Experimentos - Imágenes apiladas */
-    .experiment-images {
-        flex-direction: column;
-    }
-
-    .experiment-images img {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    /* Títulos más pequeños */
-    h1 {
-        font-size: 1.8rem !important;
-    }
-}
-
-/* Pantallas menores a 480px (Móviles pequeños) */
-@media (max-width: 480px) {
-    /* Botones de idioma compactos */
-    .language-selector {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .lang-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-
-    /* Texto general más legible */
-    body {
-        font-size: 15px;
-        line-height: 1.5;
-    }
-
-    /* Ajuste de márgenes */
-    main {
-        padding: 15px;
-    }
-
-    .tab-content {
-        padding: 15px;
-    }
-}
-
-/* styles.css - Añadir estas modificaciones */
-/* Ajustes generales para tablet */
-@media (max-width: 1024px) {
-    header {
-        padding: 15px;
-    }
-    
-    nav ul {
-        gap: 12px;
-    }
-    
-    .carousel {
-        max-width: 90%;
-    }
-}
-
-/* Mejoras específicas para móviles */
-@media (max-width: 768px) {
-    .language-selector {
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    nav ul li a {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 12px 15px;
-    }
-    
-    .experiment h2 {
-        font-size: 1.5rem;
-    }
-    
-    #contact-info p {
-        font-size: 0.95rem;
-    }
-}
-
-/* Optimización para móviles pequeños */
-@media (max-width: 480px) {
-    .lang-btn {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-    
-    h1 {
-        font-size: 1.7rem !important;
-        line-height: 1.3;
-    }
-    
-    .carousel-btn {
-        padding: 12px;
-        font-size: 1.2rem;
-    }
-    
-    form input, form textarea {
-        font-size: 0.95rem;
-    }
-}
-/* Ocultar menú original en móviles */
-@media (max-width: 768px) {
-    nav {
-      display: none;
-    }
-    
-    .mobile-menu {
-      display: block;
-      width: 90%;
-      margin: 10px auto;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  }
-  
-  /* Mostrar menú original en desktop */
-  @media (min-width: 769px) {
-    .mobile-menu {
-      display: none;
-    }
-  }
-/* Asegurar la visibilidad del contenido en móviles */
-  @media (max-width: 768px) {
-    section {
-      padding: 20px 10px;
-    }
-    
-    h1 {
-      font-size: 1.8em;
-    }
-    
-    .contenido-seccion {
-      width: 95%;
-    }
-  }
-  /* Estilos existentes + nuevos */
-header {
-    position: relative;
-    z-index: 1000;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-.mobile-menu {
-    display: none;
-    background: #fff;
-    border: 2px solid #1a4d2b;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px auto;
-    width: 90%;
-    font-size: 1.1rem;
-    color: #1a4d2b;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    nav {
-        display: none;
-    }
-    
-    .mobile-menu {
-        display: block;
-    }
-    
-    .brand {
-        padding: 10px;
-    }
-    
-    section {
-        padding: 30px 15px;
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile-menu {
-        display: none !important;
-    }
-}
-
-/* Mantener otros estilos existentes */
-/* Menú responsive */
-.mobile-menu {
-    display: none;
-    width: 90%;
-    margin: 15px auto;
-    padding: 12px;
-    border: 2px solid #1a4d2b;
-    border-radius: 5px;
-    background: #fff;
-    color: #353c4c;
-    font-size: 1rem;
-    z-index: 1000;
-    position: relative;
-}
-
-@media (max-width: 768px) {
-    nav {
-        display: none !important;
-    }
-    
-    .mobile-menu {
-        display: block;
-    }
-    
-    .brand {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .language-selector {
-        margin-top: 10px;
-    }
-    
-    .carousel-btn {
-        padding: 12px;
-        font-size: 1.2rem;
-    }
-    
-    .experiment-images {
-        flex-direction: column;
-    }
-    
-    .experiment-images img {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile-menu {
-        display: none !important;
-    }
-}
-
-
-/* Reset Móvil */
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Menú Móvil */
-.mobile-menu {
-    display: none;
-    width: 90%;
-    margin: 15px auto;
-    padding: 15px;
-    font-size: 1.1rem;
-    border: 2px solid #1a4d2b;
-    border-radius: 8px;
-    background: #fff;
-    z-index: 1000;
-    position: relative;
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-@media (max-width: 768px) {
-    nav {
-        display: none !important;
-    }
-    
-    .mobile-menu {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    .brand {
-        flex-direction: row;
-        padding: 10px 15px;
-    }
-    
-    .language-selector {
-        gap: 8px;
-        flex-wrap: nowrap;
-    }
-    
-    .carousel {
-        margin: 0 auto;
-        width: 95%;
-    }
-}
-
-/* Corrección para iOS */
-@supports (-webkit-overflow-scrolling: touch) {
-    select {
-        font-size: 16px; /* Previene zoom automático */
-    }
 }

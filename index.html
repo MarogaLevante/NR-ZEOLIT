@@ -2,26 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>NR-Zeo - Zeolita Natural</title>
+    
+    <!-- Hojas de estilo -->
     <link rel="stylesheet" href="styles.css">
-    <!-- CDNs -->
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Fuentes externas -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;700&display=swap">
 </head>
 <body>
+    <!-- Cabecera principal -->
     <header>
         <div class="brand">
+            <!-- Logo con traducción de texto alternativo -->
             <div class="logo">
                 <img src="logo.png" alt="NR-Zeo" data-translate="logoAlt">
             </div>
+            
+            <!-- Selector de idioma -->
             <div class="language-selector">
+                <!-- Botones deben llamar a setLanguage() -->
                 <button class="lang-btn" onclick="setLanguage('es')">ES</button>
                 <button class="lang-btn" onclick="setLanguage('en')">EN</button>
                 <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
             </div>
         </div>
 
-        <!-- Menú Móvil -->
+        <!-- Menú móvil - Debe coincidir con IDs de secciones -->
         <select class="mobile-menu" data-translate="menu">
+            <!-- Cada option debe tener data-translate y value con #id -->
             <option value="#home" data-translate="home"></option>
             <option value="#about" data-translate="about"></option>
             <option value="#products" data-translate="products"></option>
@@ -30,19 +42,15 @@
             <option value="#experiments" data-translate="experiments"></option>
         </select>
 
-            <!-- Menú Desktop -->
+        <!-- Menú Desktop -->
         <nav>
             <ul>
                 <li><a href="#home" data-translate="home"><i class="fas fa-home"></i><span class="nav-text"></span></a></li>
-                <li><a href="#about" data-translate="about"><i class="fas fa-about"></i><span class="nav-text"></span></a></li>
-                <li><a href="#products" data-translate="products"><i class="fas fa-products"></i><span class="nav-text"></span></a></li>
-                <li><a href="#benefits" data-translate="benefits"><i class="fas fa-benefits"></i><span class="nav-text"></span></a></li>
-                <li><a href="#experiments" data-translate="experiments"><i class="fas fa-experiments"></i><span class="nav-text"></span></a></li>
-                <li><a href="#contact" data-translate="contact"><i class="fas fa-contact"></i><span class="nav-text"></span></a></li>
-               
-
-                <!-- Nueva sección para experimentos -->
-             
+                <li><a href="#about" data-translate="about"><i class="fas fa-info-circle"></i><span class="nav-text"></span></a></li>
+                <li><a href="#products" data-translate="products"><i class="fas fa-box"></i><span class="nav-text"></span></a></li>
+                <li><a href="#benefits" data-translate="benefits"><i class="fas fa-leaf"></i><span class="nav-text"></span></a></li>
+                <li><a href="#experiments" data-translate="experiments"><i class="fas fa-flask"></i><span class="nav-text"></span></a></li>
+                <li><a href="#contact" data-translate="contact"><i class="fas fa-envelope"></i><span class="nav-text"></span></a></li>
             </ul>
         </nav>
     </header>
