@@ -233,16 +233,13 @@ carousel.addEventListener('touchend', e => {
 });
 }
 
-// Modificar la función setLanguage
-function setLanguage(language) {
-    // ... código existente ...
-    
+
     // Actualizar el menú móvil
     const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.querySelectorAll('option').forEach(option => {
         option.textContent = translations[language][option.getAttribute('data-translate')];
     });
-}
+
 
 // Agregar funcionalidad del menú móvil
 document.querySelector('.mobile-menu').addEventListener('change', function(e) {
