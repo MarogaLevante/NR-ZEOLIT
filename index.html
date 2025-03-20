@@ -25,12 +25,15 @@
                 <li><a href="#" onclick="showTab('products')"><i class="fas fa-box-open"></i> <span class="nav-text" data-translate="products">Nuestros Productos</span></a></li>
                 <li><a href="#" onclick="showTab('benefits')"><i class="fas fa-seedling"></i> <span class="nav-text" data-translate="benefits">Beneficios</span></a></li>
                 <li><a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> <span class="nav-text" data-translate="contact">Contáctanos</span></a></li>
+                <!-- Nueva sección para experimentos -->
+                <li><a href="#" onclick="showTab('experiments')"><i class="fas fa-flask"></i> <span class="nav-text" data-translate="experiments">Experimentos</span></a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <div class="tab-content">
+            <!-- Sección de Inicio -->
             <section id="home" class="tab active">
                 <h1 id="home-title" data-translate="homeTitle">Bienvenidos a NR-Zeo</h1>
                 <p id="home-desc" data-translate="homeDesc">Expertos en zeolita natural para la agricultura, medio ambiente y la industria.</p>
@@ -44,18 +47,24 @@
                     <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
                 </div>
             </section>
+
+            <!-- Sección de Quiénes Somos -->
             <section id="about" class="tab">
                 <h1 id="about-title" data-translate="aboutTitle">Quiénes Somos</h1>
                 <p id="about-desc" data-translate="aboutDesc">Somos líderes en la producción y exportación de zeolita natural, con aplicaciones en agricultura, filtración de agua y la industria.</p>
                 <img id="about-image" src="about.jpg" alt="Nuestra Empresa">
                 <p id="about-info" data-translate="aboutInfo">NR-Zeo es una empresa comprometida con la sostenibilidad y la innovación en el uso de la zeolita natural. Nuestro equipo de expertos trabaja para ofrecer soluciones eficientes y ecológicas para diversos sectores. Natural Resources Company, hemos establecido nuestra empresa en Irak en 2023. Antes de nuestra constitución oficial, hemos estado experimentando con ZEOLITAS en diferentes sectores; principalmente Agricultura, Tratamiento de Aguas, Acuicultura y Usos Avícolas</p>
             </section>
+
+            <!-- Sección de Productos -->
             <section id="products" class="tab">
                 <h1 id="products-title" data-translate="productsTitle">Nuestros Productos</h1>
                 <p id="products-desc" data-translate="productsDesc">Ofrecemos zeolita en diferentes formatos: granular, polvo y en pellets.</p>
                 <img id="products-image" src="products.jpg" alt="Nuestros Productos">
                 <p id="products-info" data-translate="productsInfo">Nuestros productos son 100% naturales y están diseñados para satisfacer las necesidades de agricultores, industrias y proyectos ambientales.</p>
             </section>
+
+            <!-- Sección de Beneficios -->
             <section id="benefits" class="tab">
                 <h1 id="benefits-title" data-translate="benefitsTitle">Beneficios de la Zeolita</h1>
                 <ul id="benefits-list">
@@ -66,6 +75,8 @@
                 </ul>
                 <p id="benefits-info" data-translate="benefitsInfo">La zeolita es un mineral versátil que ofrece múltiples beneficios tanto para la agricultura como para la industria y el medio ambiente.</p>
             </section>
+
+            <!-- Sección de Contacto -->
             <section id="contact" class="tab">
                 <h1 id="contact-title" data-translate="contactTitle">Contáctanos</h1>
                 <div id="contact-info" data-translate="contactInfo"></div> <!-- Aquí se mostrará la información de contacto -->
@@ -75,6 +86,32 @@
                     <textarea name="message" placeholder="Tu mensaje" required></textarea>
                     <button type="submit" data-translate="submit">Enviar</button>
                 </form>
+            </section>
+
+            <!-- Nueva Sección de Experimentos -->
+            <section id="experiments" class="tab">
+                <h1 id="experiments-title" data-translate="experimentsTitle">Experimentos de Campo</h1>
+                <p id="experiments-desc" data-translate="experimentsDesc">Hemos realizado numerosos experimentos de campo con zeolita en diferentes cultivos, obteniendo resultados significativos en la mejora de la calidad y el rendimiento.</p>
+                
+                <!-- Experimento 1: Proyecto Al-Ferdous -->
+                <div class="experiment">
+                    <h2 data-translate="experiment1Title">Proyecto Al-Ferdous - Patatas Lady Rosetta</h2>
+                    <p data-translate="experiment1Desc">En este experimento, comparamos el crecimiento de patatas cultivadas con y sin zeolita. Los resultados mostraron una mejora del 170% en la calidad general de las patatas cultivadas con zeolita.</p>
+                    <div class="experiment-images">
+                        <img src="experiment1-with-zeolite.jpg" alt="Patatas con Zeolita" data-translate="experiment1Image1">
+                        <img src="experiment1-no-zeolite.jpg" alt="Patatas sin Zeolita" data-translate="experiment1Image2">
+                    </div>
+                </div>
+
+                <!-- Experimento 2: Granja Rabeea -->
+                <div class="experiment">
+                    <h2 data-translate="experiment2Title">Granja Rabeea - Patatas Almendra</h2>
+                    <p data-translate="experiment2Desc">En este experimento, se cultivaron patatas Almendra con y sin zeolita. Las patatas cultivadas con zeolita mostraron una mejor forma, peso y tamaño, además de una mejora notable en los tallos y hojas.</p>
+                    <div class="experiment-images">
+                        <img src="experiment2-with-zeolite.jpg" alt="Patatas con Zeolita" data-translate="experiment2Image1">
+                        <img src="experiment2-no-zeolite.jpg" alt="Patatas sin Zeolita" data-translate="experiment2Image2">
+                    </div>
+                </div>
             </section>
         </div>
     </main>

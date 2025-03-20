@@ -1,24 +1,54 @@
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-image');
+let autoSlideInterval;
 
+// Función para mostrar la imagen actual
 function showSlide(index) {
     slides.forEach((slide, i) => {
         slide.style.display = i === index ? 'block' : 'none';
     });
 }
 
+// Función para avanzar a la siguiente imagen
 function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
 }
 
+// Función para retroceder a la imagen anterior
 function prevSlide() {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
 }
 
+// Función para iniciar el cambio automático de imágenes
+function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 5000); // Cambia la imagen cada 5 segundos (5000 ms)
+}
+
+// Función para detener el cambio automático de imágenes
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
 // Mostrar la primera imagen al cargar la página
 showSlide(currentSlide);
+
+// Iniciar el cambio automático de imágenes al cargar la página
+startAutoSlide();
+
+// Detener el cambio automático cuando el usuario interactúa con los botones de navegación
+document.querySelector('.prev').addEventListener('click', () => {
+    stopAutoSlide();
+    prevSlide();
+    startAutoSlide(); // Reiniciar el cambio automático después de la interacción
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+    stopAutoSlide();
+    nextSlide();
+    startAutoSlide(); // Reiniciar el cambio automático después de la interacción
+});
 
 // Función para mostrar la pestaña seleccionada
 function showTab(tabId) {
@@ -37,6 +67,7 @@ const translations = {
         products: "Nuestros Productos",
         benefits: "Beneficios",
         contact: "Contáctanos",
+        experiments: "Experimentos",
         homeTitle: "Bienvenidos a NR-Zeo",
         homeDesc: "Expertos en zeolita natural para la agricultura, medio ambiente y la industria.",
         aboutTitle: "Quiénes Somos",
@@ -64,7 +95,17 @@ const translations = {
             <p><strong>Bagdad</strong></p>
         `,
         submit: "Enviar",
-        rights: "Todos los derechos reservados."
+        rights: "Todos los derechos reservados.",
+        experimentsTitle: "Experimentos de Campo",
+        experimentsDesc: "Hemos realizado numerosos experimentos de campo con zeolita en diferentes cultivos, obteniendo resultados significativos en la mejora de la calidad y el rendimiento.",
+        experiment1Title: "Proyecto Al-Ferdous - Patatas Lady Rosetta",
+        experiment1Desc: "En este experimento, comparamos el crecimiento de patatas cultivadas con y sin zeolita. Los resultados mostraron una mejora del 170% en la calidad general de las patatas cultivadas con zeolita.",
+        experiment1Image1: "Patatas con Zeolita",
+        experiment1Image2: "Patatas sin Zeolita",
+        experiment2Title: "Granja Rabeea - Patatas Almendra",
+        experiment2Desc: "En este experimento, se cultivaron patatas Almendra con y sin zeolita. Las patatas cultivadas con zeolita mostraron una mejor forma, peso y tamaño, además de una mejora notable en los tallos y hojas.",
+        experiment2Image1: "Patatas con Zeolita",
+        experiment2Image2: "Patatas sin Zeolita"
     },
     en: {
         home: "Home",
@@ -72,6 +113,7 @@ const translations = {
         products: "Our Products",
         benefits: "Benefits",
         contact: "Contact Us",
+        experiments: "Experiments",
         homeTitle: "Welcome to NR-Zeo",
         homeDesc: "Experts in natural zeolite for agriculture, environment, and industry.",
         aboutTitle: "About Us",
@@ -99,7 +141,17 @@ const translations = {
             <p><strong>Baghdad</strong></p>
         `,
         submit: "Submit",
-        rights: "All rights reserved."
+        rights: "All rights reserved.",
+        experimentsTitle: "Field Experiments",
+        experimentsDesc: "We have conducted numerous field experiments with zeolite in different crops, achieving significant results in improving quality and yield.",
+        experiment1Title: "Al-Ferdous Project - Lady Rosetta Potatoes",
+        experiment1Desc: "In this experiment, we compared the growth of potatoes cultivated with and without zeolite. The results showed a 170% improvement in the overall quality of potatoes grown with zeolite.",
+        experiment1Image1: "Potatoes with Zeolite",
+        experiment1Image2: "Potatoes without Zeolite",
+        experiment2Title: "Rabeea Farm - Almond Potatoes",
+        experiment2Desc: "In this experiment, Almond potatoes were cultivated with and without zeolite. The potatoes grown with zeolite showed better shape, weight, and size, as well as a noticeable improvement in stems and leaves.",
+        experiment2Image1: "Potatoes with Zeolite",
+        experiment2Image2: "Potatoes without Zeolite"
     },
     ar: {
         home: "الرئيسية",
@@ -107,6 +159,7 @@ const translations = {
         products: "منتجاتنا",
         benefits: "فوائد",
         contact: "اتصل بنا",
+        experiments: "التجارب",
         homeTitle: "مرحبًا بكم في NR-Zeo",
         homeDesc: "خبراء في الزيوليت الطبيعي للزراعة والبيئة والصناعة.",
         aboutTitle: "من نحن",
@@ -134,7 +187,17 @@ const translations = {
             <p><strong>بغداد</strong></p>
         `,
         submit: "إرسال",
-        rights: "جميع الحقوق محفوظة."
+        rights: "جميع الحقوق محفوظة.",
+        experimentsTitle: "التجارب الميدانية",
+        experimentsDesc: "لقد أجرينا العديد من التجارب الميدانية باستخدام الزيوليت في محاصيل مختلفة، وحققنا نتائج كبيرة في تحسين الجودة والإنتاجية.",
+        experiment1Title: "مشروع الفردوس - بطاطس ليدي روزيتا",
+        experiment1Desc: "في هذه التجربة، قارنا نمو البطاطس المزروعة مع وبدون زيوليت. وأظهرت النتائج تحسنًا بنسبة 170٪ في الجودة العامة للبطاطس المزروعة بالزيوليت.",
+        experiment1Image1: "بطاطس مع الزيوليت",
+        experiment1Image2: "بطاطس بدون زيوليت",
+        experiment2Title: "مزرعة الربيع - بطاطس اللوز",
+        experiment2Desc: "في هذه التجربة، تمت زراعة بطاطس اللوز مع وبدون زيوليت. وأظهرت البطاطس المزروعة بالزيوليت شكلًا أفضل ووزنًا وحجمًا، بالإضافة إلى تحسن ملحوظ في السيقان والأوراق.",
+        experiment2Image1: "بطاطس مع الزيوليت",
+        experiment2Image2: "بطاطس بدون زيوليت"
     }
 };
 
