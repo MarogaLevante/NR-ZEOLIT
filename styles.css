@@ -432,3 +432,30 @@ footer {
         display: none !important;
     }
 }
+/* Asegurar visibilidad del menú móvil */
+.mobile-menu {
+    z-index: 1000;
+    position: relative;
+    background: #ffffff;
+}
+
+/* Prevenir solapamiento con el selector de idiomas */
+.brand {
+    position: relative;
+    z-index: 1001;
+    background: #353c4c;
+    width: 100%;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .language-selector {
+        position: static;
+        z-index: auto;
+    }
+    
+    .mobile-menu {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}

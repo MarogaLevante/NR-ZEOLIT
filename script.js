@@ -62,6 +62,7 @@ function showTab(tabId) {
 // Traducciones
 const translations = {
     es: {
+        menu: "Menú",
         home: "Inicio",
         about: "Quiénes Somos",
         products: "Nuestros Productos",
@@ -108,6 +109,7 @@ const translations = {
         experiment2Image2: "Patatas sin Zeolita"
     },
     en: {
+        menu: "Menu",
         home: "Home",
         about: "About Us",
         products: "Our Products",
@@ -154,6 +156,7 @@ const translations = {
         experiment2Image2: "Potatoes without Zeolite"
     },
     ar: {
+        menu: "القائمة",
         home: "الرئيسية",
         about: "من نحن",
         products: "منتجاتنا",
@@ -202,16 +205,15 @@ const translations = {
 };
 
 function setLanguage(language) {
-    // Traducción estándar de elementos
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(element => {
+    // Actualizar todos los elementos traducibles
+    document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
         // Manejar diferentes tipos de elementos
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
             element.placeholder = translations[language][key];
         } else if (element.tagName === 'OPTION') {
-            element.textContent = translations[language][key];
+            element.textContent = translations[language][key]; // Traducir opciones del select
         } else {
             element.innerHTML = translations[language][key];
         }
@@ -224,9 +226,14 @@ function setLanguage(language) {
             const menuKey = option.getAttribute('data-translate');
             option.textContent = translations[language][menuKey];
         });
+        
+        // Forzar re-renderizado del menú móvil
+        mobileMenu.style.display = 'none';
+        mobileMenu.offsetHeight; // Trigger reflow
+        mobileMenu.style.display = 'block';
     }
 
-    // Actualizar texto alternativo de imágenes en experimentos
+    // Actualizar texto alternativo de imágenes
     document.querySelectorAll('.experiment-images img').forEach(img => {
         const altKey = img.getAttribute('data-translate');
         img.alt = translations[language][altKey];
@@ -235,10 +242,11 @@ function setLanguage(language) {
     // Mantener consistencia con el tab activo
     const currentTab = document.querySelector('.tab.active').id;
     document.querySelector('.mobile-menu').value = `#${currentTab}`;
+}
     
     // Resto del código existente (swipe, etc.)
     // ... [mantén aquí el código de soporte para swipe que ya tenías]
-}
+
 
 
 
