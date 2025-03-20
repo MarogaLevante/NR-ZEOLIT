@@ -208,68 +208,33 @@ const translations = {
 };
 
 // Reemplazar completamente la función setLanguage
-function setLanguage(language) {
-    // 1. Actualizar elementos principales
+// Versión corregida
+function setLanguage(lang) { // Usar 'lang' como parámetro
+    // Actualizar elementos traducibles
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
-        // Manejar diferentes tipos de elementos
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = translations[language][key];
+            element.placeholder = translations[lang][key]; // Usar 'lang'
         } else if (element.tagName === 'OPTION') {
-            element.textContent = translations[language][key];
+            element.textContent = translations[lang][key]; // Usar 'lang'
         } else if (element.tagName === 'IMG') {
-            element.alt = translations[language][key];
+            element.alt = translations[lang][key]; // Usar 'lang'
         } else {
-            element.innerHTML = translations[language][key];
+            element.innerHTML = translations[lang][key]; // Usar 'lang'
         }
     });
 
-    // 2. Fix para menú móvil
+    // Actualizar menú móvil
     const mobileMenu = document.querySelector('.mobile-menu');
     if (mobileMenu) {
-        // Truco para forzar actualización
-        const tempDisplay = mobileMenu.style.display;
-        mobileMenu.style.display = 'none';
-        setTimeout(() => {
-            mobileMenu.style.display = tempDisplay;
-        }, 50);
-        
-        // Actualizar valor seleccionado
-        const currentTab = document.querySelector('.tab.active').id;
-        mobileMenu.value = `#${currentTab}`;
+        // Forzar actualización visual
+        mobileMenu.innerHTML = mobileMenu.innerHTML;
+        mobileMenu.value = `#${document.querySelector('.tab.active').id}`;
     }
 
-    // 3. Depuración en consola
-    console.log('Idioma cambiado a:', language);
-    console.log('Estado del menú móvil:', mobileMenu.offsetParent !== null);
+    console.log('Idioma actual:', lang); // Verificación en consola
 }
-
-// Agregar este código al final del archivo
-document.querySelector('.mobile-menu').addEventListener('change', function(e) {
-    const targetTab = e.target.value.replace('#', '');
-    showTab(targetTab);
-    window.scrollTo({
-        top: document.querySelector(targetTab).offsetTop - 100,
-        behavior: 'smooth'
-    });
-});
-
-// Actualizar el evento de clic para todos los enlaces
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        showTab(targetId.replace('#', ''));
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-    });
-});
-    
-    // Resto del código existente (swipe, etc.)
-    // ... [mantén aquí el código de soporte para swipe que ya tenías]
-
-
-
 
 
     // Agregar soporte para swipe en móviles
@@ -343,3 +308,10 @@ observer.observe(document.querySelector('.mobile-menu'), {
 
 // Establecer el idioma por defecto al cargar la página
 setLanguage('es');
+
+// Al final de script.js
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        console.log('Botón presionado:', this.textContent);
+    });
+});
