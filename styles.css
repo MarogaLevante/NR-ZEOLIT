@@ -35,7 +35,7 @@ header {
 
 /* Selector de idioma */
 .language-selector {
-    display: flex;
+    display: right;
     gap: 10px;
 }
 
