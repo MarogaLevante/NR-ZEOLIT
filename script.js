@@ -230,5 +230,103 @@ carousel.addEventListener('touchend', e => {
     }
 });
 
+// Agregar JavaScript para la funcionalidad
+document.querySelector('.mobile-menu').addEventListener('change', function(e) {
+    window.location.href = e.target.value;
+  });
+
+
+// Función de idioma existente modificada
+function toggleLanguage(lang) {
+    document.querySelectorAll('[data-es], [data-en]').forEach(element => {
+        if (element.tagName === 'OPTION') {
+            element.textContent = element.getAttribute(`data-${lang}`);
+        } else {
+            element.textContent = element.getAttribute(`data-${lang}`);
+        }
+    });
+    
+    // Actualizar placeholder del select
+    document.querySelector('.mobile-menu').setAttribute('title', 
+        document.querySelector('.mobile-menu').getAttribute(`data-${lang}`));
+}
+
+// Navegación móvil
+document.querySelector('.mobile-menu').addEventListener('change', function(e) {
+    const target = document.querySelector(e.target.value);
+    if(target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+// Smooth scroll para ambos menús
+document.querySelectorAll('nav a, .mobile-menu').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if(targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+
+
+
+
+// Actualizar el menú móvil
+const mobileMenu = document.querySelector('.mobile-menu');
+mobileMenu.querySelectorAll('option').forEach(option => {
+    option.textContent = translations[language][option.getAttribute('data-translate')];
+});
+
+
+// Agregar funcionalidad del menú móvil
+document.querySelector('.mobile-menu').addEventListener('change', function(e) {
+const targetTab = e.target.value.replace('#', '');
+showTab(targetTab);
+document.querySelector(targetTab).scrollIntoView({ behavior: 'smooth' });
+});
+
+// Actualizar el smooth scroll para todos los enlaces
+document.querySelectorAll('nav a, .mobile-menu').forEach(link => {
+link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if(targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+});
+
+// Detectar cambio de hash en la URL para sincronizar menú
+window.addEventListener('hashchange', function() {
+const currentTab = window.location.hash.substring(1);
+showTab(currentTab);
+});
+
+
+
+
+
+
+
+
+
+
+// Detectar cambio de idioma al cargar
+document.addEventListener('DOMContentLoaded', () => {
+    const userLang = navigator.language || navigator.userLanguage;
+    if(userLang.startsWith('en')) toggleLanguage('en');
+});
+
+
+
+
+
+
+
 // Establecer el idioma por defecto al cargar la página
 setLanguage('es');

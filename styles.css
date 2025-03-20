@@ -391,3 +391,151 @@ footer {
         padding: 15px;
     }
 }
+
+/* styles.css - Añadir estas modificaciones */
+/* Ajustes generales para tablet */
+@media (max-width: 1024px) {
+    header {
+        padding: 15px;
+    }
+    
+    nav ul {
+        gap: 12px;
+    }
+    
+    .carousel {
+        max-width: 90%;
+    }
+}
+
+/* Mejoras específicas para móviles */
+@media (max-width: 768px) {
+    .language-selector {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li a {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 15px;
+    }
+    
+    .experiment h2 {
+        font-size: 1.5rem;
+    }
+    
+    #contact-info p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Optimización para móviles pequeños */
+@media (max-width: 480px) {
+    .lang-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    h1 {
+        font-size: 1.7rem !important;
+        line-height: 1.3;
+    }
+    
+    .carousel-btn {
+        padding: 12px;
+        font-size: 1.2rem;
+    }
+    
+    form input, form textarea {
+        font-size: 0.95rem;
+    }
+}
+/* Ocultar menú original en móviles */
+@media (max-width: 768px) {
+    nav {
+      display: none;
+    }
+    
+    .mobile-menu {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+  
+  /* Mostrar menú original en desktop */
+  @media (min-width: 769px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+/* Asegurar la visibilidad del contenido en móviles */
+  @media (max-width: 768px) {
+    section {
+      padding: 20px 10px;
+    }
+    
+    h1 {
+      font-size: 1.8em;
+    }
+    
+    .contenido-seccion {
+      width: 95%;
+    }
+  }
+  /* Estilos existentes + nuevos */
+header {
+    position: relative;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.mobile-menu {
+    display: none;
+    background: #fff;
+    border: 2px solid #1a4d2b;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    width: 90%;
+    font-size: 1.1rem;
+    color: #1a4d2b;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    .brand {
+        padding: 10px;
+    }
+    
+    section {
+        padding: 30px 15px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Mantener otros estilos existentes */
