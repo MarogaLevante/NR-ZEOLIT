@@ -2,45 +2,45 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NR-Zeo - Zeolita Natural</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap">
+    <!-- CDNs -->
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="NR-Zeo Logo" loading="lazy">
+        <div class="brand">
+            <div class="logo">
+                <img src="logo.png" alt="NR-Zeo" data-translate="logoAlt">
+            </div>
+            <div class="language-selector">
+                <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+                <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
+            </div>
         </div>
-        <div class="language-selector">
-            <button class="lang-btn" onclick="setLanguage('es')">ES</button>
-            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
-        </div>
 
-    </div>
+        <!-- Menú Móvil -->
+        <select class="mobile-menu" data-translate="menu">
+            <option value="#home" data-translate="home"></option>
+            <option value="#about" data-translate="about"></option>
+            <option value="#products" data-translate="products"></option>
+            <option value="#benefits" data-translate="benefits"></option>
+            <option value="#contact" data-translate="contact"></option>
+            <option value="#experiments" data-translate="experiments"></option>
+        </select>
 
-     <!-- Menú móvil -->
-    <select class="mobile-menu" data-translate="menu">
-        <option value="#home" data-translate="home">Inicio</option>
-        <option value="#about" data-translate="about">Quiénes Somos</option>
-        <option value="#products" data-translate="products">Productos</option>
-        <option value="#benefits" data-translate="benefits">Beneficios</option>
-        <option value="#experiments" data-translate="experiments">Experimentos</option>
-        <option value="#contact" data-translate="contact">Contacto</option>
-        
-    </select>
-
-            <!-- Menú desktop -->
+            <!-- Menú Desktop -->
         <nav>
             <ul>
-                <li><a href="#" onclick="showTab('home')"><i class="fas fa-home"></i> <span class="nav-text" data-translate="home">Inicio</span></a></li>
-                <li><a href="#" onclick="showTab('about')"><i class="fas fa-info-circle"></i> <span class="nav-text" data-translate="about">Quiénes Somos</span></a></li>
-                <li><a href="#" onclick="showTab('products')"><i class="fas fa-box-open"></i> <span class="nav-text" data-translate="products">Nuestros Productos</span></a></li>
-                <li><a href="#" onclick="showTab('benefits')"><i class="fas fa-seedling"></i> <span class="nav-text" data-translate="benefits">Beneficios</span></a></li>
-                <li><a href="#" onclick="showTab('experiments')"><i class="fas fa-flask"></i> <span class="nav-text" data-translate="experiments">Experimentos</span></a></li>
-                <li><a href="#" onclick="showTab('contact')"><i class="fas fa-envelope"></i> <span class="nav-text" data-translate="contact">Contáctanos</span></a></li>
+                <li><a href="#home" data-translate="home"><i class="fas fa-home"></i><span class="nav-text"></span></a></li>
+                <li><a href="#about" data-translate="about"><i class="fas fa-about"></i><span class="nav-text"></span></a></li>
+                <li><a href="#products" data-translate="products"><i class="fas fa-products"></i><span class="nav-text"></span></a></li>
+                <li><a href="#benefits" data-translate="benefits"><i class="fas fa-benefits"></i><span class="nav-text"></span></a></li>
+                <li><a href="#experiments" data-translate="experiments"><i class="fas fa-experiments"></i><span class="nav-text"></span></a></li>
+                <li><a href="#contact" data-translate="contact"><i class="fas fa-contact"></i><span class="nav-text"></span></a></li>
+               
+
                 <!-- Nueva sección para experimentos -->
              
             </ul>

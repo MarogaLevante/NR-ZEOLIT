@@ -207,132 +207,81 @@ const translations = {
     }
 };
 
-function setLanguage(language) {
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = translations[language][key];
+function setLanguage(lang) {
+    // Traducción general
+    document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.dataset.translate;
+        const content = translations[lang][key] || '';
+        
+        if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) {
+            el.placeholder = content;
+        } else if (el.tagName === 'OPTION') {
+            el.textContent = content;
         } else {
-            element.innerHTML = translations[language][key]; // Usamos innerHTML para permitir saltos de línea <br>
+            el.innerHTML = content;
         }
+    });
+
+    // Actualización específica del menú móvil
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('option').forEach(option => {
+            option.textContent = translations[lang][option.dataset.translate];
+        });
+        mobileMenu.value = `#${document.querySelector('.tab.active').id}`;
+    }
+}
+
+// Gestión de Navegación Unificada
+function handleNavigation(targetId) {
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    showTab(targetId.replace('#', ''));
+    window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: 'smooth'
     });
 }
 
-// Agregar soporte para swipe en móviles
-let touchStartX = 0;
-const carousel = document.querySelector('.carousel');
-
-carousel.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
+// Eventos
+document.querySelector('.mobile-menu').addEventListener('change', e => {
+    handleNavigation(e.target.value);
 });
 
-carousel.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diffX = touchStartX - touchEndX;
-    
-    if (Math.abs(diffX) > 50) {
-        diffX > 0 ? nextSlide() : prevSlide();
-    }
-});
-
-// Agregar JavaScript para la funcionalidad
-document.querySelector('.mobile-menu').addEventListener('change', function(e) {
-    window.location.href = e.target.value;
-  });
-
-
-// Función de idioma existente modificada
-function toggleLanguage(lang) {
-    document.querySelectorAll('[data-es], [data-en]').forEach(element => {
-        if (element.tagName === 'OPTION') {
-            element.textContent = element.getAttribute(`data-${lang}`);
-        } else {
-            element.textContent = element.getAttribute(`data-${lang}`);
-        }
-    });
-    
-    // Actualizar placeholder del select
-    document.querySelector('.mobile-menu').setAttribute('title', 
-        document.querySelector('.mobile-menu').getAttribute(`data-${lang}`));
-}
-
-// Navegación móvil
-document.querySelector('.mobile-menu').addEventListener('change', function(e) {
-    const target = document.querySelector(e.target.value);
-    if(target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
-});
-
-// Smooth scroll para ambos menús
-document.querySelectorAll('nav a, .mobile-menu').forEach(link => {
-    link.addEventListener('click', function(e) {
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        if(targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        handleNavigation(link.getAttribute('href'));
     });
 });
 
-
-
-
-
-// Actualizar el menú móvil
-const mobileMenu = document.querySelector('.mobile-menu');
-mobileMenu.querySelectorAll('option').forEach(option => {
-    option.textContent = translations[language][option.getAttribute('data-translate')];
-});
-
-
-// Agregar funcionalidad del menú móvil
-document.querySelector('.mobile-menu').addEventListener('change', function(e) {
-const targetTab = e.target.value.replace('#', '');
-showTab(targetTab);
-document.querySelector(targetTab).scrollIntoView({ behavior: 'smooth' });
-});
-
-// Actualizar el smooth scroll para todos los enlaces
-document.querySelectorAll('nav a, .mobile-menu').forEach(link => {
-link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    if(targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
+// Inicialización Responsive
+window.addEventListener('DOMContentLoaded', () => {
+    // Detectar idioma del navegador
+    const userLang = navigator.language.slice(0,2);
+    if (translations[userLang]) setLanguage(userLang);
+    
+    // Forzar layout móvil
+    if (window.innerWidth <= 768) {
+        document.querySelector('.mobile-menu').style.display = 'block';
+        document.querySelector('nav').style.display = 'none';
     }
 });
-});
 
-// Detectar cambio de hash en la URL para sincronizar menú
-window.addEventListener('hashchange', function() {
-const currentTab = window.location.hash.substring(1);
-showTab(currentTab);
-});
+// Swipe para Carrusel (Mejorado)
+let touchStartX = 0;
+const swipeThreshold = 50;
 
+document.querySelector('.carousel').addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
 
+document.querySelector('.carousel').addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchStartX - touchEndX;
 
-
-
-
-
-
-
-
-// Detectar cambio de idioma al cargar
-document.addEventListener('DOMContentLoaded', () => {
-    const userLang = navigator.language || navigator.userLanguage;
-    if(userLang.startsWith('en')) toggleLanguage('en');
-});
-
-
-
-
-
-
-
-// Establecer el idioma por defecto al cargar la página
-setLanguage('es');
+    if (Math.abs(deltaX) > swipeThreshold) {
+        deltaX > 0 ? nextSlide() : prevSlide();
+    }
+}, { passive: true });
