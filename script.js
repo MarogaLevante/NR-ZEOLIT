@@ -62,8 +62,6 @@ function showTab(tabId) {
 // Traducciones
 const translations = {
     es: {
-        menu: "Menú",
-        logoAlt: "Logo NR-Zeo",
         home: "Inicio",
         about: "Quiénes Somos",
         products: "Nuestros Productos",
@@ -110,8 +108,6 @@ const translations = {
         experiment2Image2: "Patatas sin Zeolita"
     },
     en: {
-        menu: "Menu",
-        logoAlt: "NR-Zeo Logo",
         home: "Home",
         about: "About Us",
         products: "Our Products",
@@ -158,8 +154,6 @@ const translations = {
         experiment2Image2: "Potatoes without Zeolite"
     },
     ar: {
-        menu: "القائمة",
-        logoAlt: "شعار NR-Zeo",
         home: "الرئيسية",
         about: "من نحن",
         products: "منتجاتنا",
@@ -207,111 +201,17 @@ const translations = {
     }
 };
 
-// Reemplazar completamente la función setLanguage
-// Versión corregida
-function setLanguage(lang) { // Usar 'lang' como parámetro
-    // Actualizar elementos traducibles
-    document.querySelectorAll('[data-translate]').forEach(element => {
+function setLanguage(language) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
         const key = element.getAttribute('data-translate');
-        
         if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = translations[lang][key]; // Usar 'lang'
-        } else if (element.tagName === 'OPTION') {
-            element.textContent = translations[lang][key]; // Usar 'lang'
-        } else if (element.tagName === 'IMG') {
-            element.alt = translations[lang][key]; // Usar 'lang'
+            element.placeholder = translations[language][key];
         } else {
-            element.innerHTML = translations[lang][key]; // Usar 'lang'
+            element.innerHTML = translations[language][key]; // Usamos innerHTML para permitir saltos de línea <br>
         }
     });
-
-    // Actualizar menú móvil
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (mobileMenu) {
-        // Forzar actualización visual
-        mobileMenu.innerHTML = mobileMenu.innerHTML;
-        mobileMenu.value = `#${document.querySelector('.tab.active').id}`;
-    }
-
-    console.log('Idioma actual:', lang); // Verificación en consola
 }
-
-
-    // Agregar soporte para swipe en móviles
-let touchStartX = 0;
-const carousel = document.querySelector('.carousel');
-
-carousel.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-carousel.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diffX = touchStartX - touchEndX;
-    
-    if (Math.abs(diffX) > 50) {
-        diffX > 0 ? nextSlide() : prevSlide();
-    }
-});
-
-
-
-    // Actualizar el menú móvil
-    const mobileMenu = document.querySelector('.mobile-menu');
-    mobileMenu.querySelectorAll('option').forEach(option => {
-        option.textContent = translations[language][option.getAttribute('data-translate')];
-    });
-
-
-// Agregar funcionalidad del menú móvil
-document.querySelector('.mobile-menu').addEventListener('change', function(e) {
-    const targetTab = e.target.value.replace('#', '');
-    showTab(targetTab);
-    document.querySelector(targetTab).scrollIntoView({ behavior: 'smooth' });
-});
-
-// Actualizar el smooth scroll para todos los enlaces
-document.querySelectorAll('nav a, .mobile-menu').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        if(targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});
-
-// Detectar cambio de hash en la URL para sincronizar menú
-window.addEventListener('hashchange', function() {
-    const currentTab = window.location.hash.substring(1);
-    showTab(currentTab);
-});
-
-// Monitorizar cambios de visibilidad
-const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        if (mutation.attributeName === 'style') {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            if (mobileMenu && window.getComputedStyle(mobileMenu).display === 'none') {
-                mobileMenu.style.display = 'block';
-            }
-        }
-    });
-});
-
-observer.observe(document.querySelector('.mobile-menu'), {
-    attributes: true,
-    attributeFilter: ['style']
-});
-
 
 // Establecer el idioma por defecto al cargar la página
 setLanguage('es');
-
-// Al final de script.js
-document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        console.log('Botón presionado:', this.textContent);
-    });
-});
