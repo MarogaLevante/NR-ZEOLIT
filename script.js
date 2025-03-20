@@ -264,8 +264,19 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // Forzar layout móvil
     if (window.innerWidth <= 768) {
-        document.querySelector('.mobile-menu').style.display = 'block';
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenu.style.display = 'block';
         document.querySelector('nav').style.display = 'none';
+
+        // Agregar opciones al menú móvil
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            const option = document.createElement('option');
+            option.value = `#${tab.id}`;
+            option.dataset.translate = tab.id + 'Title';
+            option.textContent = translations[userLang][tab.id + 'Title'] || tab.id;
+            mobileMenu.appendChild(option);
+        });
     }
 });
 
